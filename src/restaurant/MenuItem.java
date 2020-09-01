@@ -1,17 +1,19 @@
 package restaurant;
 
 
+import java.util.Objects;
+
 public class MenuItem {
     private double price;
     private String description;
     private String category;
-    private Boolean created;
+    private Boolean isNew;
 
-    public MenuItem(double price, String description, String category, Boolean created) {
+    public MenuItem(double price, String description, String category, Boolean isNew) {
         this.price = price;
         this.description = description;
         this.category = category;
-        this.created = created;
+        this.isNew = isNew;
     }
 
     public double getPrice() {
@@ -38,13 +40,34 @@ public class MenuItem {
         this.category = category;
     }
 
-    public Boolean getCreated() {
-        return created;
+    public Boolean getIsNew() {
+        return isNew;
     }
 
-    public void setCreated(Boolean created) {
-        this.created = created;
+    public void setIsNew(Boolean isNew) {
+        this.isNew = isNew;
     }
 
 
+    public Boolean getNew() {
+        return isNew;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        MenuItem menuItem = (MenuItem) o;
+        return Objects.equals(description, menuItem.description) &&
+                Objects.equals(category, menuItem.category);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(description, category);
+    }
+
+    public String toString () {
+        return "Description: " + this.description + " Category: " + this.category + " Price: " + this.price + " New: " + this.isNew;
+    }
 }
